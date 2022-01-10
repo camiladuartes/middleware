@@ -23,9 +23,15 @@ public class Invoker {
             // Separates the method type and concatenates with the path to form the hashmap key	
             var invokerKey = msg.getMethodType().toLowerCase();
             invokerKey = invokerKey + msg.getRoute();
-            
+
+            //Calling the lifecycle manager to activate the remote object if is inactive
+            LifecycleManager.prepareRemoteObjectForInvocation();
+
             // Calls the invoke method passing the JSON key and parameters.
     		ResponseMessage respMsg = RemoteObject.findMethod(invokerKey, msg.getBody());
+
+            //Calling the lifecycle manager deactivate the remote object if there is no more invocations
+            LifecycleManager.prepareRemoteObjectForDeactivation();
             	        	
         	return respMsg;
         }
