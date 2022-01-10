@@ -198,10 +198,13 @@ public class RemoteObject {
 			return new ResponseMessage("406", "Not Acceptable", response.toString());
 		}
 
+		// Create a json to store the message
 		JSONObject response = new JSONObject();
 
 		//Remote object was invoked when inactive
 		response.append("Error: ", "An error occurred while processing the method.");
+
+		//Return the error message
 		return new ResponseMessage("500", "Internal Server Error", response.toString());
 	}
 
