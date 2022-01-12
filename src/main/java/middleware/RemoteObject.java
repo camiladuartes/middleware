@@ -60,7 +60,7 @@ public class RemoteObject {
 	// Method responsible for finding and invoking remote objects.
 	public static ResponseMessage findMethod(String method, JSONObject jsonObject) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		// Checks if the path of the method you want to invoke is of type get.
-		if(!active) {
+		if(active) {
 			if(method.toLowerCase().contains("get")) {
 				// Checks the hashmap of get methods contains the passed key
 				if(methodsGet.containsKey(method)){
